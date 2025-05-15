@@ -1,0 +1,63 @@
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(#0D47A1, #1976D2);
+    font-family: 'Montserrat', sans-serif;
+    color: #fff;
+}
+.menu {
+    text-align: center;
+}
+h1 {
+    font-size: 48px;
+    margin-bottom: 40px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+button {
+    display: block;
+    width: 300px;
+    padding: 15px;
+    margin: 10px auto;
+    background: #FBC02D;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+    color: #333;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+}
+button:hover {
+    background: #FFD54F;
+    transform: scale(1.05);
+}
+canvas {
+    border: 2px solid #333;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    background: #fff;
+}
+.location-tabs {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: flex;
+    gap: 10px;
+}
+.location-tabs button {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 10px 20px;
+    background: #FBC02D;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #333;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.location-tabs button:hover {
+    background: #FFD54F;
+}

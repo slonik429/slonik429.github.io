@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Достижения - Economist Tycoon</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #e0e0e0;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            background-color: #f0f0f0;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            width: 500px;
+        }
+        h1 {
+            font-size: 24px;
+            color: #333;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+        }
+        li {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+        .achieved {
+            color: #2196F3;
+        }
+        .not-achieved {
+            color: #999;
+        }
+        .button {
+            background-color: #F44336;
+            color: #FFF;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        .button:hover {
+            background-color: #FF5252;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Достижения</h1>
+        <ul id="achievementsList"></ul>
+        <button class="button" onclick="window.location.href='game.html'">Назад</button>
+    </div>
+
+    <script>
+        const state = JSON.parse(localStorage.getItem('gameState')) || {};
+        const achievementsList = [
+            { id: "newbie", name: "Новичок", description: "Достигни 2 уровня магазина", condition: () => state.storeLevel >= 2 },
+            { id: "businessman", name: "Бизнесмен", description: "Заработай 5000 денег", condition: () => state.money >= 5000 },
+            { id: "popular", name: "Популярный", description: "Достигни 75 мнения покупателей", condition: () => state.customerOpinion >= 75 },
+            { id: "employer", name: "Работодатель", description: "Нанять 3 сотрудников", condition: () => state.employees.length >= 3 },
+            { id: "security", name: "Безопасность", description: "Установи 2 камеры видеонаблюдения", condition: () => state.cameras >= 2 },
+            { id: "warehouseMaster", name: "Мастер склада", description: "Выиграй 5 раз в 'Расстановке товаров'", condition: () => state.warehouseWins >= 5 },
+            { id: "edBrodou", name: "Эд Бродоу", description: "Выиграй 10 раз в 'Переговорах с поставщиком'", condition: () => state.negotiationWins >= 10 }
+        ];
+
+        const ul = document.getElementById('achievementsList');
+        achievementsList.forEach(achievement => {
+            const li = document.createElement('li');
+            const isAchieved = state.achievements && state.achievements.includes(achievement.id);
+            li.className = isAchieved ? 'achieved' : 'not-achieved';
+            li.textContent = `${achievement.name}: ${achievement.description}`;
+            ul.appendChild(li);
+        });
+    </script>
+</body>
+</html>

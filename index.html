@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Экономический магнат</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        #volumeSlider {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 200px;
+            height: 10px;
+            background: #d3d3d3;
+            outline: none;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+            border-radius: 5px;
+            margin: 20px auto;
+        }
+        #volumeSlider:hover {
+            opacity: 1;
+        }
+        #volumeSlider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            background: #FBC02D;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+        #volumeSlider::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            background: #FBC02D;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <h1>Экономический магнат</h1>
+        <button onclick="startNewGame()">Новая игра</button>
+        <button onclick="continueGame()">Продолжить</button>
+        <button onclick="exitGame()">Выход</button>
+        <input type="range" id="volumeSlider" min="0" max="100" value="50">
+    </div>
+    <script>
+        function startNewGame() {
+            localStorage.removeItem('gameState');
+            window.location.href = 'game.html';
+        }
+        function continueGame() {
+            if (localStorage.getItem('gameState')) {
+                window.location.href = 'game.html';
+            } else {
+                alert('Нет сохраненной игры!');
+            }
+        }
+        function exitGame() {
+            if (confirm('Хотите покинуть игру?')) {
+                window.location.href = 'https://example.com';
+            }
+        }
+
+        const volumeSlider = document.getElementById("volumeSlider");
+        if (volumeSlider) {
+            volumeSlider.addEventListener("input", function() {
+                const newVolume = volumeSlider.value / 100;
+                localStorage.setItem("gameVolume", newVolume); // Сохраняем громкость для игры
+                console.log("Volume set to:", newVolume);
+            });
+            // Загружаем сохранённую громкость, если есть
+            const savedVolume = localStorage.getItem("gameVolume");
+            if (savedVolume) {
+                volumeSlider.value = savedVolume * 100;
+            }
+        }
+    </script>
+</body>
+</html>
